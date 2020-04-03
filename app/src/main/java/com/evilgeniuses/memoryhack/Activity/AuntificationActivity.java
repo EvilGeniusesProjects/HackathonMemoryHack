@@ -1,10 +1,12 @@
-package com.evilgeniuses.memoryhack;
+package com.evilgeniuses.memoryhack.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.evilgeniuses.memoryhack.R;
+
+public class AuntificationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
