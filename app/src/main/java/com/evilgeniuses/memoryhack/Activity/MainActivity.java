@@ -12,12 +12,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.evilgeniuses.memoryhack.Fragments.EmptyFragment;
+import com.evilgeniuses.memoryhack.Interface.SwitchFragment;
 import com.evilgeniuses.memoryhack.R;
-import com.evilgeniuses.memoryhack.api.navigation.SwitchFragmentListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements SwitchFragmentListener {
+public class MainActivity extends AppCompatActivity implements SwitchFragment {
 
     private Fragment fragment;
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements SwitchFragmentLis
 
         //Главный фрагмент
         EmptyFragment emptyFragment = new EmptyFragment();
-        switchTo(emptyFragment);
+        setFragment(emptyFragment, "1");
     }
 
     @Override
@@ -41,19 +41,19 @@ public class MainActivity extends AppCompatActivity implements SwitchFragmentLis
                 EmptyFragment emptyFragment = new EmptyFragment();
                 switch (item.getItemId()) {
                     case R.id.siteItem:
-                        switchTo(emptyFragment);
+                        setFragment(emptyFragment, "1");
                         break;
                     case R.id.dataItem:
-                        switchTo(emptyFragment);
+                        setFragment(emptyFragment, "1");
                         break;
                     case R.id.listItem:
-                        switchTo(emptyFragment);
+                        setFragment(emptyFragment, "1");
                         break;
                     case R.id.giftsItem:
-                        switchTo(emptyFragment);
+                        setFragment(emptyFragment, "1");
                         break;
                     case R.id.profileItem:
-                        switchTo(emptyFragment);
+                        setFragment(emptyFragment, "1");
                         break;
                 }
                 return true;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements SwitchFragmentLis
     }
 
     @Override
-    public void switchTo(Fragment fragment) {
+    public void setFragment(Fragment fragment, String title) {
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment, fragment);

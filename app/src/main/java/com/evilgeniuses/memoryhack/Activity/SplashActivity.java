@@ -15,11 +15,11 @@ public class SplashActivity extends AppCompatActivity {
         //Intent intent;
         Intent intent = new Intent(this, AuntificationActivity.class);
 
-//        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-//            intent = new Intent(this, MainActivity.class);
-//        } else {
-//            intent = new Intent(this, AuntificationActivity.class);
-//        }
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            intent = new Intent(this, MainActivity.class);
+        } else {
+            intent = new Intent(this, AuntificationActivity.class);
+        }
 
         startActivity(intent);
         finish();
