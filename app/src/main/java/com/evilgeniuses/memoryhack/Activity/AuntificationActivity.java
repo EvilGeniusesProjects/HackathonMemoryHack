@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.evilgeniuses.memoryhack.Fragments.PhoneNumberFragment;
-import com.evilgeniuses.memoryhack.Fragments.ProfileFragment;
 import com.evilgeniuses.memoryhack.Interface.SwitchFragment;
 import com.evilgeniuses.memoryhack.R;
 

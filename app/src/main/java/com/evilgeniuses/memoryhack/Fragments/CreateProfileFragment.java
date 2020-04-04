@@ -44,7 +44,7 @@ import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ProfileFragment extends Fragment implements View.OnClickListener {
+public class CreateProfileFragment extends Fragment implements View.OnClickListener {
 
     private SwitchFragment switchFragment;
 

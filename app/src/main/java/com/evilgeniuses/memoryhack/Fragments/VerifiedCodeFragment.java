@@ -19,7 +19,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -252,7 +251,7 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            switchFragment.setFragment(new ProfileFragment(), "Профиль");
+                            switchFragment.setFragment(new CreateProfileFragment(), "Профиль");
                         } else {
                             Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }

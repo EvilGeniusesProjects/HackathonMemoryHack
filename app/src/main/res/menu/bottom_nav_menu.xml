@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/siteItem"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/site_str" />
+    <item
+        android:id="@+id/dataItem"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/data_str" />
+    <item
+        android:id="@+id/listItem"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/list_str" />
+    <item
+        android:id="@+id/giftsItem"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/gifts_str" />
+    <item
+        android:id="@+id/profileItem"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Profile" />
+</menu>
