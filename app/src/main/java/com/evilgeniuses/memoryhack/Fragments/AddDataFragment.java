@@ -175,6 +175,8 @@ public class AddDataFragment extends Fragment {
                     Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
                     checkFace(bitmap);
 
+
+
                 } catch (FileNotFoundException e) {
                     Log.e(LOG_TAG, "FileNotFound exception expected: ", e);
                 }
