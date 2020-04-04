@@ -72,7 +72,7 @@ public class CreateProfileFragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_create_profile, container, false);
 
         editTextLogin = rootView.findViewById(R.id.editTextLogin);
         editTextName = rootView.findViewById(R.id.editTextName);

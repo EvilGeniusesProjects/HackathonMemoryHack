@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.evilgeniuses.memoryhack.Fragments.EmptyFragment;
+import com.evilgeniuses.memoryhack.Fragments.ProfileFragment;
+import com.evilgeniuses.memoryhack.Fragments.SiteFragment;
 import com.evilgeniuses.memoryhack.Interface.SwitchFragment;
 import com.evilgeniuses.memoryhack.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,8 +29,7 @@ public class MainActivity extends AppCompatActivity implements SwitchFragment {
         setContentView(R.layout.activity_main);
 
         //Главный фрагмент
-        EmptyFragment emptyFragment = new EmptyFragment();
-        setFragment(emptyFragment, "1");
+        setFragment(SiteFragment.newInstance(), "1");
     }
 
     @Override
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements SwitchFragment {
                 EmptyFragment emptyFragment = new EmptyFragment();
                 switch (item.getItemId()) {
                     case R.id.siteItem:
-                        setFragment(emptyFragment, "1");
+                        setFragment(SiteFragment.newInstance(), "1");
                         break;
                     case R.id.dataItem:
                         setFragment(emptyFragment, "1");
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements SwitchFragment {
                         setFragment(emptyFragment, "1");
                         break;
                     case R.id.profileItem:
-                        setFragment(emptyFragment, "1");
+                        setFragment(ProfileFragment.newInstance(), "1");
                         break;
                 }
                 return true;
