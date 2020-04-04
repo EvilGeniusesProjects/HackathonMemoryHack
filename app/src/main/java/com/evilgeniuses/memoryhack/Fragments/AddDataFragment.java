@@ -9,7 +9,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.BoringLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +44,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -169,7 +167,14 @@ public class AddDataFragment extends Fragment {
                     final Uri imageUri = data.getData();
                     final InputStream imageStream = getActivity().getContentResolver().openInputStream(Objects.requireNonNull(imageUri));
                     final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                    checkFace(selectedImage);
+                    imageView.setImageBitmap(selectedImage);
+                    btnUpgradePhoto.setEnabled(true);
+
+
+                    Drawable drawable = imageView.getDrawable();
+                    Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                    checkFace(bitmap);
+
                 } catch (FileNotFoundException e) {
                     Log.e(LOG_TAG, "FileNotFound exception expected: ", e);
                 }
@@ -188,8 +193,7 @@ public class AddDataFragment extends Fragment {
     public void checkFace(Bitmap photo) {
 
         final ProgressDialog pd = new ProgressDialog(getContext());
-
-        pd.setMessage("Загрузка");
+        pd.setMessage("Uploading");
         pd.show();
 
         FirebaseVisionFaceDetectorOptions options = new FirebaseVisionFaceDetectorOptions.Builder().setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
@@ -200,20 +204,30 @@ public class AddDataFragment extends Fragment {
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(photo);
         FirebaseVisionFaceDetector detector = FirebaseVision.getInstance().getVisionFaceDetector(options);
 
-        detector.detectInImage(image).addOnSuccessListener(
-                faces -> {
-                    pd.dismiss();
-                    if (faces.size() == 1) {
-                        imageView.setImageBitmap(photo);
-                        btnUpgradePhoto.setEnabled(true);
-                    } else {
-                        Toast.makeText(getContext(), "На фотографии не распознаны лица, попробуйте загрузить другие фотографии", Toast.LENGTH_SHORT).show();
-                    }
+        Task<List<FirebaseVisionFace>> result = detector.detectInImage(image).addOnSuccessListener(
+                new OnSuccessListener<List<FirebaseVisionFace>>() {
+                    @Override
+                    public void onSuccess(List<FirebaseVisionFace> faces) {
 
+                        Toast.makeText(getContext(), "Нету лица", Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+
+                        for (FirebaseVisionFace face : faces) {
+
+                            Toast.makeText(getContext(), "Есть лицо", Toast.LENGTH_SHORT).show();
+                            pd.dismiss();
+
+                        }
+                    }
                 }).addOnFailureListener(
-                e -> {
-                    Toast.makeText(getContext(), "На фотографии не распознаны лица, попробуйте загрузить другие фотографии", Toast.LENGTH_SHORT).show();
-                    pd.dismiss();
+                new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(getContext(), "Нету лица", Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+
+                    }
                 });
     }
 }
