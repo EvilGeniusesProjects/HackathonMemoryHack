@@ -18,18 +18,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.evilgeniuses.memoryhack.Model.ColorizeRequestModel;
 import com.evilgeniuses.memoryhack.R;
 import com.evilgeniuses.memoryhack.services.ColorizeService;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.face.FirebaseVisionFace;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions;
 import com.karumi.dexter.Dexter;
@@ -44,7 +39,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -167,14 +161,7 @@ public class AddDataFragment extends Fragment {
                     final Uri imageUri = data.getData();
                     final InputStream imageStream = getActivity().getContentResolver().openInputStream(Objects.requireNonNull(imageUri));
                     final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                    imageView.setImageBitmap(selectedImage);
-                    btnUpgradePhoto.setEnabled(true);
-
-
-                    Drawable drawable = imageView.getDrawable();
-                    Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-                    checkFace(bitmap);
-
+                    checkFace(selectedImage);
                 } catch (FileNotFoundException e) {
                     Log.e(LOG_TAG, "FileNotFound exception expected: ", e);
                 }
@@ -193,7 +180,8 @@ public class AddDataFragment extends Fragment {
     public void checkFace(Bitmap photo) {
 
         final ProgressDialog pd = new ProgressDialog(getContext());
-        pd.setMessage("Uploading");
+
+        pd.setMessage("Загрузка");
         pd.show();
 
         FirebaseVisionFaceDetectorOptions options = new FirebaseVisionFaceDetectorOptions.Builder().setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
@@ -204,30 +192,20 @@ public class AddDataFragment extends Fragment {
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(photo);
         FirebaseVisionFaceDetector detector = FirebaseVision.getInstance().getVisionFaceDetector(options);
 
-        Task<List<FirebaseVisionFace>> result = detector.detectInImage(image).addOnSuccessListener(
-                new OnSuccessListener<List<FirebaseVisionFace>>() {
-                    @Override
-                    public void onSuccess(List<FirebaseVisionFace> faces) {
-
-                        Toast.makeText(getContext(), "Нету лица", Toast.LENGTH_SHORT).show();
-                        pd.dismiss();
-
-                        for (FirebaseVisionFace face : faces) {
-
-                            Toast.makeText(getContext(), "Есть лицо", Toast.LENGTH_SHORT).show();
-                            pd.dismiss();
-
-                        }
+        detector.detectInImage(image).addOnSuccessListener(
+                faces -> {
+                    pd.dismiss();
+                    if (faces.size() == 1) {
+                        imageView.setImageBitmap(photo);
+                        btnUpgradePhoto.setEnabled(true);
+                    } else {
+                        Toast.makeText(getContext(), "На фотографии не распознаны лица, попробуйте загрузить другие фотографии", Toast.LENGTH_SHORT).show();
                     }
+
                 }).addOnFailureListener(
-                new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                        Toast.makeText(getContext(), "Нету лица", Toast.LENGTH_SHORT).show();
-                        pd.dismiss();
-
-                    }
+                e -> {
+                    Toast.makeText(getContext(), "На фотографии не распознаны лица, попробуйте загрузить другие фотографии", Toast.LENGTH_SHORT).show();
+                    pd.dismiss();
                 });
     }
 }
