@@ -16,6 +16,11 @@
         android:layout_marginRight="16dp"
         android:orientation="vertical">
 
+        <Spinner
+            android:id="@+id/spinnerCountries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"
@@ -36,7 +41,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/editTextRegionCode"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:ems="10"

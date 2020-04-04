@@ -1,23 +1,34 @@
 package com.evilgeniuses.memoryhack.Fragments;
 
+import androidx.annotation.Nullable;
 import android.content.Context;
 import android.os.Bundle;
+import com.evilgeniuses.memoryhack.Interface.SwitchFragment;
+import com.evilgeniuses.memoryhack.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskExecutors;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.evilgeniuses.memoryhack.Interface.SwitchFragment;
-import com.evilgeniuses.memoryhack.R;
+import java.util.concurrent.TimeUnit;
+
 
 public class VerifiedCodeFragment extends Fragment implements View.OnClickListener {
 
@@ -30,6 +41,11 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
     EditText editTextNumberCode4;
     EditText editTextNumberCode5;
     EditText editTextNumberCode6;
+
+
+
+    private String verificationId;
+    private FirebaseAuth mAuth;
 
     TextView textView;
 
@@ -47,7 +63,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
         textView = rootView.findViewById(R.id.textView);
         textView.setText(textView.getText() + PhoneNumber + ".");
-        PhoneNumber.replaceAll(" ", "");
 
         editTextNumberCode1.requestFocus();
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -71,8 +86,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             }
         });
-
-
         editTextNumberCode2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -89,7 +102,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             }
         });
-
         editTextNumberCode3.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -106,7 +118,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             }
         });
-
         editTextNumberCode4.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -123,7 +134,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             }
         });
-
         editTextNumberCode5.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -140,7 +150,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             }
         });
-
         editTextNumberCode6.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -158,6 +167,11 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
             }
         });
 
+        mAuth = FirebaseAuth.getInstance();
+
+        PhoneNumber.replaceAll(" ", "");
+
+        sendVerificationCode(PhoneNumber);
 
 
 
@@ -166,9 +180,94 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-        }
+            String code = editTextNumberCode1.getText().toString() + editTextNumberCode2.getText().toString() + editTextNumberCode3.getText().toString()
+                    + editTextNumberCode4.getText().toString() + editTextNumberCode5.getText().toString() + editTextNumberCode6.getText().toString();
+
+            if (code.isEmpty() || code.length() < 6) {
+                editTextNumberCode1.setText("-");
+                editTextNumberCode2.setText("-");
+                editTextNumberCode3.setText("-");
+                editTextNumberCode4.setText("-");
+                editTextNumberCode5.setText("-");
+                editTextNumberCode6.setText("-");
+                editTextNumberCode1.requestFocus();
+                return;
+            }
+            verifyCode(code);
     }
+
+
+
+    private void verifyCode(String code) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+        signInWithCredential(credential);
+    }
+
+    private void signInWithCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+//                            Intent intent = new Intent(getContext(), ProfileActivity.class);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                            startActivity(intent);
+
+                            switchFragment.setFragment(new ProfileFragment(), "Проверка телефона");
+
+                            Toast.makeText(getContext(),"Успех", Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    private void sendVerificationCode(String number) {
+        Toast.makeText(getContext(), "sendVerificationCode: " + number, Toast.LENGTH_SHORT).show();
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                number,
+                60,
+                TimeUnit.SECONDS,
+                TaskExecutors.MAIN_THREAD,
+                mCallBack
+        );
+
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+            mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        @Override
+        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(s, forceResendingToken);
+            verificationId = s;
+        }
+
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            String code = phoneAuthCredential.getSmsCode();
+            if (code != null) {
+
+                editTextNumberCode1.setText(code.charAt(0));
+                editTextNumberCode2.setText(code.charAt(1));
+                editTextNumberCode3.setText(code.charAt(2));
+                editTextNumberCode4.setText(code.charAt(3));
+                editTextNumberCode5.setText(code.charAt(4));
+                editTextNumberCode6.setText(code.charAt(5));
+
+                //verifyCode(code);
+            }
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    };
 
 
 

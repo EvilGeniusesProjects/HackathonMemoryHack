@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="64dp"
             mask:srcCompat="@drawable/sms_image" />
 
         <TextView
