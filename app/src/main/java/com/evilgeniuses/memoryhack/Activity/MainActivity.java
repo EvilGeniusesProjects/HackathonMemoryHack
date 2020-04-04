@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.evilgeniuses.memoryhack.Fragments.AddDataFragment;
 import com.evilgeniuses.memoryhack.Fragments.EmptyFragment;
 import com.evilgeniuses.memoryhack.Fragments.ProfileFragment;
 import com.evilgeniuses.memoryhack.Fragments.SiteFragment;
@@ -45,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements SwitchFragment {
                         setFragment(SiteFragment.newInstance(), "1");
                         break;
                     case R.id.dataItem:
-                        setFragment(emptyFragment, "1");
+                        AddDataFragment addDataFragment = new AddDataFragment();
+                        setFragment(addDataFragment, "Add data Fragment");
                         break;
                     case R.id.listItem:
                         setFragment(emptyFragment, "1");
