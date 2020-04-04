@@ -198,6 +198,8 @@ public class AddDataFragment extends Fragment {
                     if (faces.size() == 1) {
                         imageView.setImageBitmap(photo);
                         btnUpgradePhoto.setEnabled(true);
+                    } else if (faces.size() > 1) {
+                        Toast.makeText(getContext(), "Не допускается загрузка групповых фотографий", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getContext(), "На фотографии не распознаны лица, попробуйте загрузить другие фотографии", Toast.LENGTH_SHORT).show();
                     }
