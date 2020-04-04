@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.AuntificationActivity"/>
+        <activity android:name=".Activity.AuntificationActivity"
+                  android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>
