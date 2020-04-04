@@ -52,7 +52,7 @@ public class AuntificationActivity extends AppCompatActivity implements View.OnC
 
         textViewTitle.setText(fragmentTitle);
 
-        if (fragmentTitle.equals("Ваш телефон")) {
+        if (fragmentTitle.equals("Ваш телефон") || fragmentTitle.equals("Профиль")) {
             imageViewBack.setVisibility(View.GONE);
             fragmentBack = fragment;
             titleBack = fragmentTitle;

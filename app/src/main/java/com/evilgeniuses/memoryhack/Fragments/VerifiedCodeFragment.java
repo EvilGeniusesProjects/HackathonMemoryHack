@@ -252,7 +252,7 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            switchFragment.setFragment(new ProfileFragment(), "Проверка телефона");
+                            switchFragment.setFragment(new ProfileFragment(), "Профиль");
                         } else {
                             Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -261,7 +261,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
     }
 
     private void sendVerificationCode(String number) {
-        Toast.makeText(getContext(), "sendVerificationCode: " + number, Toast.LENGTH_SHORT).show();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number,
                 60,
@@ -286,13 +285,15 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
             String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
 
-                editTextNumberCode1.setText(code.charAt(0));
-                editTextNumberCode2.setText(code.charAt(1));
-                editTextNumberCode3.setText(code.charAt(2));
-                editTextNumberCode4.setText(code.charAt(3));
-                editTextNumberCode5.setText(code.charAt(4));
-                editTextNumberCode6.setText(code.charAt(5));
+                editTextNumberCode1.setText("" + code.charAt(0));
+                editTextNumberCode2.setText("" + code.charAt(1));
+                editTextNumberCode3.setText("" + code.charAt(2));
+                editTextNumberCode4.setText("" + code.charAt(3));
+                editTextNumberCode5.setText("" + code.charAt(4));
+                editTextNumberCode6.setText("" + code.charAt(5));
 
+
+                Toast.makeText(getContext(), "Успешно", Toast.LENGTH_LONG).show();
                 verifyCode(code);
             }
         }
@@ -302,10 +303,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
-
-
-
-
 
     @Override
     public void onAttach(@NonNull Context context) {
