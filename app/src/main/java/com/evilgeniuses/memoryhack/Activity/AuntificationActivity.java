@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.evilgeniuses.memoryhack.Fragments.PhoneNumberFragment;
+import com.evilgeniuses.memoryhack.Fragments.ProfileFragment;
 import com.evilgeniuses.memoryhack.Interface.SwitchFragment;
 import com.evilgeniuses.memoryhack.R;
 
@@ -25,13 +26,15 @@ public class AuntificationActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.auntification_activity);
 
         imageViewBack = findViewById(R.id.imageViewBack);
         textViewTitle = findViewById(R.id.textViewTitle);
 
         imageViewBack.setOnClickListener(this);
         setFragment(new PhoneNumberFragment(), "Ваш телефон");
+
+        //setFragment(new ProfileFragment(), "Проверка телефона");
     }
 
     @Override

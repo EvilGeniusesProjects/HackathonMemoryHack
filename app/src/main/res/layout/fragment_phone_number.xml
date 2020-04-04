@@ -21,15 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:enabled="false"
-            android:inputType="textPersonName"
-            android:text="Russian Federation" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

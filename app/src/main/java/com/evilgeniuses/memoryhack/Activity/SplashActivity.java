@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -14,9 +16,9 @@ public class SplashActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AuntificationActivity.class);
 
 //        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-//            intent = new Intent(this, TabbedActivity.class);
+//            intent = new Intent(this, MainActivity.class);
 //        } else {
-//            intent = new Intent(this, AuthenticationActivity.class);
+//            intent = new Intent(this, AuntificationActivity.class);
 //        }
 
         startActivity(intent);

@@ -19,7 +19,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +50,7 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
     private FirebaseAuth mAuth;
 
     TextView textView;
+    Button buttonOk;
 
     @Nullable
     @Override
@@ -60,6 +63,9 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
         editTextNumberCode4 = rootView.findViewById(R.id.editTextNumberCode4);
         editTextNumberCode5 = rootView.findViewById(R.id.editTextNumberCode5);
         editTextNumberCode6 = rootView.findViewById(R.id.editTextNumberCode6);
+
+        buttonOk = rootView.findViewById(R.id.buttonOk);
+        buttonOk.setOnClickListener(this);
 
         textView = rootView.findViewById(R.id.textView);
         textView.setText(textView.getText() + PhoneNumber + ".");
@@ -83,7 +89,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
         editTextNumberCode2.addTextChangedListener(new TextWatcher() {
@@ -99,7 +104,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
         editTextNumberCode3.addTextChangedListener(new TextWatcher() {
@@ -115,9 +119,9 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
+
         editTextNumberCode4.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -131,7 +135,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
         editTextNumberCode5.addTextChangedListener(new TextWatcher() {
@@ -147,7 +150,6 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
         editTextNumberCode6.addTextChangedListener(new TextWatcher() {
@@ -163,14 +165,12 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 
         mAuth = FirebaseAuth.getInstance();
 
         PhoneNumber.replaceAll(" ", "");
-
         sendVerificationCode(PhoneNumber);
 
 
@@ -180,21 +180,64 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-            String code = editTextNumberCode1.getText().toString() + editTextNumberCode2.getText().toString() + editTextNumberCode3.getText().toString()
-                    + editTextNumberCode4.getText().toString() + editTextNumberCode5.getText().toString() + editTextNumberCode6.getText().toString();
 
-            if (code.isEmpty() || code.length() < 6) {
-                editTextNumberCode1.setText("-");
-                editTextNumberCode2.setText("-");
-                editTextNumberCode3.setText("-");
-                editTextNumberCode4.setText("-");
-                editTextNumberCode5.setText("-");
-                editTextNumberCode6.setText("-");
-                editTextNumberCode1.requestFocus();
-                return;
-            }
-            verifyCode(code);
+        switch (v.getId()){
+            case R.id.buttonOk:
+                if(checkField()){
+                    String code = editTextNumberCode1.getText().toString() + editTextNumberCode2.getText().toString() + editTextNumberCode3.getText().toString() + editTextNumberCode4.getText().toString() + editTextNumberCode5.getText().toString() + editTextNumberCode6.getText().toString();
+
+                    if (code.isEmpty() || code.length() < 6) {
+                        editTextNumberCode1.setText("-");
+                        editTextNumberCode2.setText("-");
+                        editTextNumberCode3.setText("-");
+                        editTextNumberCode4.setText("-");
+                        editTextNumberCode5.setText("-");
+                        editTextNumberCode6.setText("-");
+                        editTextNumberCode1.requestFocus();
+                    }else{
+                        verifyCode(code);
+                    }
+
+                }else{
+                    Toast.makeText(getContext(), "Не удача", Toast.LENGTH_SHORT).show();
+                }
+
+
+                break;
+        }
     }
+
+
+            public boolean checkField() {
+                boolean fild = true;
+
+                if (editTextNumberCode1.getText().toString().replaceAll(" ", "").equals("-")) {
+                    fild = false;
+                }
+
+                if (editTextNumberCode2.getText().toString().replaceAll(" ", "").equals("-")) {
+                    fild = false;
+                }
+
+                if (editTextNumberCode3.getText().toString().replaceAll(" ", "").equals("-")) {
+                    fild = false;
+                }
+
+                if (editTextNumberCode4.getText().toString().replaceAll(" ", "").equals("-")) {
+                    fild = false;
+                }
+
+                if (editTextNumberCode5.getText().toString().replaceAll(" ", "").equals("-")) {
+                    fild = false;
+                }
+
+                if (editTextNumberCode6.getText().toString().replaceAll(" ", "").equals("-")) {
+                    fild = false;
+                }
+
+                return fild;
+            }
+
 
 
 
@@ -209,16 +252,7 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-//                            Intent intent = new Intent(getContext(), ProfileActivity.class);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//
-//                            startActivity(intent);
-
                             switchFragment.setFragment(new ProfileFragment(), "Проверка телефона");
-
-                            Toast.makeText(getContext(),"Успех", Toast.LENGTH_LONG).show();
-
                         } else {
                             Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -259,7 +293,7 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
                 editTextNumberCode5.setText(code.charAt(4));
                 editTextNumberCode6.setText(code.charAt(5));
 
-                //verifyCode(code);
+                verifyCode(code);
             }
         }
 
