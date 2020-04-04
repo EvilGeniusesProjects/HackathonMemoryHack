@@ -1,6 +1,7 @@
 package com.evilgeniuses.memoryhack.Fragments;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,11 +18,20 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.evilgeniuses.memoryhack.Model.ColorizeRequestModel;
 import com.evilgeniuses.memoryhack.R;
 import com.evilgeniuses.memoryhack.services.ColorizeService;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.face.FirebaseVisionFace;
+import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector;
+import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -34,6 +44,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -63,6 +74,8 @@ public class AddDataFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
         btnUploadPhoto = view.findViewById(R.id.btnUploadPhoto);
         btnUpgradePhoto = view.findViewById(R.id.btnUpgradePhoto);
+
+
         return view;
     }
 
@@ -96,6 +109,7 @@ public class AddDataFragment extends Fragment {
         });
 
         btnUpgradePhoto.setOnClickListener(v -> {
+
             progressBar.setVisibility(View.VISIBLE);
 
             Single<byte[]> singleResult = Single.create(emitter -> {
@@ -106,6 +120,7 @@ public class AddDataFragment extends Fragment {
 
                 Drawable drawable = imageView.getDrawable();
                 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+
 
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
@@ -154,6 +169,12 @@ public class AddDataFragment extends Fragment {
                     final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                     imageView.setImageBitmap(selectedImage);
                     btnUpgradePhoto.setEnabled(true);
+
+
+                    Drawable drawable = imageView.getDrawable();
+                    Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                    checkFace(bitmap);
+
                 } catch (FileNotFoundException e) {
                     Log.e(LOG_TAG, "FileNotFound exception expected: ", e);
                 }
@@ -167,5 +188,46 @@ public class AddDataFragment extends Fragment {
         if (!compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
         }
+    }
+
+    public void checkFace(Bitmap photo) {
+
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setMessage("Uploading");
+        pd.show();
+
+        FirebaseVisionFaceDetectorOptions options = new FirebaseVisionFaceDetectorOptions.Builder().setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
+                .setLandmarkMode(FirebaseVisionFaceDetectorOptions.NO_LANDMARKS)
+                .setClassificationMode(FirebaseVisionFaceDetectorOptions.NO_CLASSIFICATIONS)
+                .build();
+
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(photo);
+        FirebaseVisionFaceDetector detector = FirebaseVision.getInstance().getVisionFaceDetector(options);
+
+        Task<List<FirebaseVisionFace>> result = detector.detectInImage(image).addOnSuccessListener(
+                new OnSuccessListener<List<FirebaseVisionFace>>() {
+                    @Override
+                    public void onSuccess(List<FirebaseVisionFace> faces) {
+
+                        Toast.makeText(getContext(), "Нету лица", Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+
+                        for (FirebaseVisionFace face : faces) {
+
+                            Toast.makeText(getContext(), "Есть лицо", Toast.LENGTH_SHORT).show();
+                            pd.dismiss();
+
+                        }
+                    }
+                }).addOnFailureListener(
+                new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(getContext(), "Нету лица", Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+
+                    }
+                });
     }
 }
