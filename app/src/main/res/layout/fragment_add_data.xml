@@ -14,7 +14,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/shareButtom"
+        android:id="@+id/shareVkButtom"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_vk"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btnUpgradePhoto"
+        app:layout_constraintRight_toLeftOf="@+id/shareInstagramButtom" />
+
+    <ImageView
+        android:id="@+id/shareInstagramButtom"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="10dp"

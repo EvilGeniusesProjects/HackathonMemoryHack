@@ -61,6 +61,7 @@ public class AddDataFragment extends Fragment {
     private Button btnUploadPhoto;
     private Button btnUpgradePhoto;
     private ImageView shareInInstagramBtn;
+    private ImageView shareInVkBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,7 +70,8 @@ public class AddDataFragment extends Fragment {
         imageView = view.findViewById(R.id.imageView);
         btnUploadPhoto = view.findViewById(R.id.btnUploadPhoto);
         btnUpgradePhoto = view.findViewById(R.id.btnUpgradePhoto);
-        shareInInstagramBtn = view.findViewById(R.id.shareButtom);
+        shareInInstagramBtn = view.findViewById(R.id.shareInstagramButtom);
+        shareInVkBtn = view.findViewById(R.id.shareVkButtom);
         return view;
     }
 
@@ -155,6 +157,7 @@ public class AddDataFragment extends Fragment {
         });
 
         shareInInstagramBtn.setOnClickListener(v -> shareFileToInstagram());
+        shareInVkBtn.setOnClickListener(v -> shareFileTopVk());
     }
 
     @Override
@@ -204,12 +207,15 @@ public class AddDataFragment extends Fragment {
                         imageView.setImageBitmap(photo);
                         btnUpgradePhoto.setEnabled(true);
                         shareInInstagramBtn.setVisibility(View.VISIBLE);
+                        shareInVkBtn.setVisibility(View.VISIBLE);
                     } else if (faces.size() > 1) {
                         Toast.makeText(getContext(), "Не допускается загрузка групповых фотографий", Toast.LENGTH_SHORT).show();
                         shareInInstagramBtn.setVisibility(View.GONE);
+                        shareInVkBtn.setVisibility(View.GONE);
                     } else {
                         Toast.makeText(getContext(), "На фотографии не распознаны лица, попробуйте загрузить другие фотографии", Toast.LENGTH_SHORT).show();
                         shareInInstagramBtn.setVisibility(View.GONE);
+                        shareInVkBtn.setVisibility(View.GONE);
                     }
 
                 }).addOnFailureListener(
@@ -220,13 +226,21 @@ public class AddDataFragment extends Fragment {
     }
 
     private void shareFileToInstagram() {
+        sharePhoto("com.instagram.android");
+    }
+
+    private void shareFileTopVk(){
+        sharePhoto("com.vkontakte.android");
+    }
+
+    private void sharePhoto(String appPackage){
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/*");
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri uriForFile = FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", createImageFile());
         shareIntent.putExtra(Intent.EXTRA_STREAM, uriForFile);
-        shareIntent.setPackage("com.instagram.android");
+        shareIntent.setPackage(appPackage);
         startActivity(shareIntent);
     }
 
