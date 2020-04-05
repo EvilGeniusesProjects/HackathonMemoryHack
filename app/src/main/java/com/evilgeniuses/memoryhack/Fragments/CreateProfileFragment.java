@@ -171,10 +171,10 @@ public class CreateProfileFragment extends Fragment implements View.OnClickListe
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
+
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
                         imageProfileRef = mUri;
-                        Login();
                         pd.dismiss();
                     } else {
                         Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();

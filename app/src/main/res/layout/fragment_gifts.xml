@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Достижение"
+        android:text="Подарки"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
         android:textSize="30sp"
@@ -63,122 +63,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <TextView
-                                android:id="@+id/textView15"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="100 ч."
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imageViewProfileImage4"
+                                android:layout_width="144dp"
+                                android:layout_height="144dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:baselineAligned="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_gift_1"
+                                app:civ_border_color="@color/colorOrange"
+                                app:civ_border_width="4dp"
                                 app:layout_constraintBottom_toTopOf="@+id/button3"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
-
-                            <TextView
-                                android:id="@+id/tvAnimalName"
-                                android:layout_width="150dp"
-                                android:layout_height="150dp"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
-                                android:background="@drawable/text_border_gift_round"
-                                android:gravity="center"
-                                android:text="1 \nDay"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="40sp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toTopOf="@+id/button111"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
-
-                            <Button
-                                android:id="@+id/button111"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
-                                android:background="@drawable/button_border_gift"
-                                android:elevation="8dp"
-                                android:paddingLeft="8dp"
-                                android:paddingRight="8dp"
-                                android:text="Обменять"
-                                android:textColor="@color/colorWhite"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:layout_weight="1"
-                        android:elevation="4dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardMaxElevation="2dp">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
 
                             <TextView
                                 android:id="@+id/textView16"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="280 ч."
-                                app:layout_constraintBottom_toTopOf="@+id/button3"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
-
-                            <TextView
-                                android:id="@+id/tvAnimalName"
-                                android:layout_width="150dp"
-                                android:layout_height="150dp"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
-                                android:background="@drawable/text_border_gift_round"
-                                android:gravity="center"
-                                android:text="3 \nDay"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="40sp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:text="Добавлено 5 героев"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toTopOf="@+id/button3"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toBottomOf="@+id/imageViewProfileImage4" />
 
                             <Button
                                 android:id="@+id/button3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginBottom="16dp"
-                                android:background="@drawable/button_border_false"
+                                android:background="@drawable/system_style_button_send"
                                 android:elevation="8dp"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
-                                android:text="Обменять"
+                                android:text="Получить"
                                 android:textColor="@color/colorWhite"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
+                                app:layout_constraintStart_toStartOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -203,122 +136,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <TextView
-                                android:id="@+id/textView17"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="450 ч."
-                                app:layout_constraintBottom_toTopOf="@+id/button3"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
-
-                            <TextView
-                                android:id="@+id/tvAnimalName"
-                                android:layout_width="150dp"
-                                android:layout_height="150dp"
-                                android:layout_marginStart="16dp"
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imageViewProfileImage4"
+                                android:layout_width="144dp"
+                                android:layout_height="144dp"
+                                android:layout_gravity="center"
                                 android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
                                 android:layout_marginBottom="16dp"
-                                android:background="@drawable/text_border_gift_round"
-                                android:gravity="center"
-                                android:text="5 \nDay"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="40sp"
-                                android:textStyle="bold"
+                                android:baselineAligned="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_gift_2"
+                                app:civ_border_color="@color/colorOrange"
+                                app:civ_border_width="4dp"
                                 app:layout_constraintBottom_toTopOf="@+id/button3"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:text="Добавлено 10 героев"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toTopOf="@+id/button3"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageViewProfileImage4" />
 
                             <Button
                                 android:id="@+id/button3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginBottom="16dp"
-                                android:background="@drawable/button_border_false"
+                                android:background="@drawable/system_style_button_send"
                                 android:elevation="8dp"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
-                                android:text="Обменять"
+                                android:text="Получить"
                                 android:textColor="@color/colorWhite"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:layout_weight="1"
-                        android:elevation="4dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardMaxElevation="2dp">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:id="@+id/textView18"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="600 ч."
-                                app:layout_constraintBottom_toTopOf="@+id/button3"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
-
-                            <TextView
-                                android:id="@+id/tvAnimalName"
-                                android:layout_width="150dp"
-                                android:layout_height="150dp"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
-                                android:background="@drawable/text_border_gift_round"
-                                android:gravity="center"
-                                android:text="7 \nDay"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="40sp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toTopOf="@+id/button3"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <Button
-                                android:id="@+id/button3"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
-                                android:background="@drawable/button_border_false"
-                                android:elevation="8dp"
-                                android:paddingLeft="8dp"
-                                android:paddingRight="8dp"
-                                android:text="Обменять"
-                                android:textColor="@color/colorWhite"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
+                                app:layout_constraintStart_toStartOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -343,55 +209,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <TextView
-                                android:id="@+id/textView19"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="1300 ч."
-                                app:layout_constraintBottom_toTopOf="@+id/button3"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
-
-                            <TextView
-                                android:id="@+id/tvAnimalName"
-                                android:layout_width="150dp"
-                                android:layout_height="150dp"
-                                android:layout_marginStart="16dp"
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imageViewProfileImage4"
+                                android:layout_width="144dp"
+                                android:layout_height="144dp"
+                                android:layout_gravity="center"
                                 android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
                                 android:layout_marginBottom="16dp"
-                                android:background="@drawable/text_border_gift_round"
-                                android:gravity="center"
-                                android:text="14 \nDay"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="40sp"
-                                android:textStyle="bold"
+                                android:baselineAligned="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_gift_3"
+                                app:civ_border_color="@color/colorOrange"
+                                app:civ_border_width="4dp"
                                 app:layout_constraintBottom_toTopOf="@+id/button3"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:text="15 героев"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toTopOf="@+id/button3"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageViewProfileImage4" />
 
                             <Button
                                 android:id="@+id/button3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginBottom="16dp"
-                                android:background="@drawable/button_border_false"
+                                android:background="@drawable/system_style_button_send"
                                 android:elevation="8dp"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
-                                android:text="Обменять"
+                                android:text="Получить"
                                 android:textColor="@color/colorWhite"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
+                                app:layout_constraintStart_toStartOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -410,55 +276,195 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <TextView
-                                android:id="@+id/textView20"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="2400 ч."
-                                app:layout_constraintBottom_toTopOf="@+id/button3"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
-
-                            <TextView
-                                android:id="@+id/tvAnimalName"
-                                android:layout_width="150dp"
-                                android:layout_height="150dp"
-                                android:layout_marginStart="16dp"
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imageViewProfileImage4"
+                                android:layout_width="144dp"
+                                android:layout_height="144dp"
+                                android:layout_gravity="center"
                                 android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
                                 android:layout_marginBottom="16dp"
-                                android:background="@drawable/text_border_gift_round"
-                                android:gravity="center"
-                                android:text="30\nDay"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="40sp"
-                                android:textStyle="bold"
+                                android:baselineAligned="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_gift_4"
+                                app:civ_border_color="@color/colorOrange"
+                                app:civ_border_width="4dp"
                                 app:layout_constraintBottom_toTopOf="@+id/button3"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:text="15 героев"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toTopOf="@+id/button3"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageViewProfileImage4" />
 
                             <Button
                                 android:id="@+id/button3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginBottom="16dp"
-                                android:background="@drawable/button_border_false"
+                                android:background="@drawable/system_style_button_send"
                                 android:elevation="8dp"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
-                                android:text="Обменять"
+                                android:text="Получить"
                                 android:textColor="@color/colorWhite"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:elevation="4dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardMaxElevation="2dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imageViewProfileImage4"
+                                android:layout_width="144dp"
+                                android:layout_height="144dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:baselineAligned="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_gift_5"
+                                app:civ_border_color="@color/colorOrange"
+                                app:civ_border_width="4dp"
+                                app:layout_constraintBottom_toTopOf="@+id/button3"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvAnimalName" />
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:text="25 героев"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toTopOf="@+id/button3"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageViewProfileImage4" />
+
+                            <Button
+                                android:id="@+id/button3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:background="@drawable/system_style_button_send"
+                                android:elevation="8dp"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="Получить"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:elevation="4dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardMaxElevation="2dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imageViewProfileImage4"
+                                android:layout_width="144dp"
+                                android:layout_height="144dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:baselineAligned="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_gift_6"
+                                app:civ_border_color="@color/colorOrange"
+                                app:civ_border_width="4dp"
+                                app:layout_constraintBottom_toTopOf="@+id/button3"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:text="25 героев"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toTopOf="@+id/button3"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageViewProfileImage4" />
+
+                            <Button
+                                android:id="@+id/button3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:background="@drawable/system_style_button_send"
+                                android:elevation="8dp"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="Получить"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>

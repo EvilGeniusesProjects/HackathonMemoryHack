@@ -12,11 +12,12 @@ public class User {
     public String userStatus;
     public String userNumber;
     public String userFrendNumber;
+    public String userPercent;
 
     public User() {
     }
 
-    public User(String userID, String userUsername, String userUsernameSearch, String userProfileImageURL, String userName, String userLastname, String userEmail, String userPassword, String userStatus, String userNumber, String userFrendNumber) {
+    public User(String userID, String userUsername, String userUsernameSearch, String userProfileImageURL, String userName, String userLastname, String userEmail, String userPassword, String userStatus, String userNumber, String userFrendNumber, String userPercent) {
         this.userID = userID;
         this.userUsername = userUsername;
         this.userUsernameSearch = userUsernameSearch;
@@ -28,6 +29,7 @@ public class User {
         this.userStatus = userStatus;
         this.userNumber = userNumber;
         this.userFrendNumber = userFrendNumber;
+        this.userPercent = userPercent;
     }
 
     public String getUserID() {
@@ -118,4 +120,11 @@ public class User {
         this.userNumber = userNumber;
     }
 
+    public String getUserPercent() {
+        return userPercent;
+    }
+
+    public void setUserPercent(String userPercent) {
+        this.userPercent = userPercent;
+    }
 }

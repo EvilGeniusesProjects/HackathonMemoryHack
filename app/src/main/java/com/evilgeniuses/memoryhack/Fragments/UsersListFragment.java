@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,6 +43,10 @@ public class UsersListFragment extends Fragment implements View.OnClickListener 
     private UsersAdapter userAdapter;
     private List<User> mUsers;
 
+    ProgressBar progressBar;
+    TextView textViewProgress;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,6 +56,9 @@ public class UsersListFragment extends Fragment implements View.OnClickListener 
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        progressBar = rootView.findViewById(R.id.progressBar);
+
+        textViewProgress = rootView.findViewById(R.id.textViewProgress);
 
         mUsers = new ArrayList<>();
 
@@ -129,6 +138,9 @@ public class UsersListFragment extends Fragment implements View.OnClickListener 
                         }
 
                     }
+                    progressBar.setProgress(mUsers.size());
+
+                    textViewProgress.setText("Участники " + mUsers.size() + " из 10");
 
                     userAdapter = new UsersAdapter(getContext(), mUsers, false);
                     recyclerView.setAdapter(userAdapter);

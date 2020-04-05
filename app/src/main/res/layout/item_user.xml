@@ -63,8 +63,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:textColor="#5e5e5e"
-        android:textSize="14sp"
+        android:textColor="@color/colorWhiteGray"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

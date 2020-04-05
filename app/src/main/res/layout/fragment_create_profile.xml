@@ -19,6 +19,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:text="Напиши номер друга который тебя пригласил"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhiteGray"
+            android:textStyle="bold" />
+
+        <br.com.sapereaude.maskedEditText.MaskedEditText
+            android:id="@+id/editTextFrendNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/system_style_edit_profile"
+            android:hint="----------"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteGray"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            app:keep_hint="true"
+            mask:allowed_chars="1234567890"
+            mask:mask="+7 ### ### ####" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageViewProfileImage2"
             android:layout_width="match_parent"
@@ -137,35 +166,6 @@
             android:text="зарегистрироваться"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp"
-            android:text="Напиши номер друга который тебя пригласил"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhiteGray"
-            android:textStyle="bold" />
-
-        <br.com.sapereaude.maskedEditText.MaskedEditText
-            android:id="@+id/editTextFrendNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/system_style_edit_profile"
-            android:hint="----------"
-            android:inputType="phone"
-            android:padding="12dp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhiteGray"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:typeface="monospace"
-            app:keep_hint="true"
-            mask:allowed_chars="1234567890"
-            mask:mask="+7 ### ### ####" />
 
     </LinearLayout>
 

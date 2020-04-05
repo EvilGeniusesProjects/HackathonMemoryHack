@@ -76,7 +76,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>{
         }
 
 
-        holder.textViewName.setText(user.getUserUsername());
+        holder.textViewName.setText(user.getUserName() + " " + user.getUserLastname());
+
+        holder.textViewTime.setText(user.userPercent);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
