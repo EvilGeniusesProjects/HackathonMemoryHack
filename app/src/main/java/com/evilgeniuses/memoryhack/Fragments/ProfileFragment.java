@@ -26,7 +26,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.evilgeniuses.memoryhack.Activity.ArmyLinksActivity;
 import com.evilgeniuses.memoryhack.Activity.AuntificationActivity;
+import com.evilgeniuses.memoryhack.Activity.MainActivity;
 import com.evilgeniuses.memoryhack.Interface.SwitchFragment;
 import com.evilgeniuses.memoryhack.Model.User;
 import com.evilgeniuses.memoryhack.R;
@@ -34,6 +36,7 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -77,6 +80,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     FirebaseStorage storage;
     FirebaseUser user;
 
+    FloatingActionButton floatingActionButton;
 
 
     @Nullable
@@ -95,6 +99,9 @@ public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup c
     editTextLastname = rootView.findViewById(R.id.editTextLastname);
 
     buttonLogout = rootView.findViewById(R.id.buttonLogout);
+
+        floatingActionButton = rootView.findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(this);
 
     textViewSetProfileImage.setOnClickListener(this);
     buttonLogout.setOnClickListener(this);
@@ -140,6 +147,12 @@ public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup c
             case R.id.textViewSetProfileImage:
                 SelectImage();
                 break;
+
+            case R.id.floatingActionButton:
+                Intent intent1 = new Intent(getActivity(), ArmyLinksActivity.class);
+                startActivity(intent1);
+                break;
+
         }
     }
 
