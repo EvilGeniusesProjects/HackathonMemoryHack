@@ -81,7 +81,7 @@ public class CreateProfileFragment extends Fragment implements View.OnClickListe
         editTextLastname = rootView.findViewById(R.id.editTextLastname);
         editTextEmail = rootView.findViewById(R.id.editTextEmail);
         editTextFrendNumber = rootView.findViewById(R.id.editTextFrendNumber);
-        imageViewProfileImage = rootView.findViewById(R.id.imageViewProfileImage);
+        imageViewProfileImage = rootView.findViewById(R.id.imageViewProfileImage2);
         textViewSetProfileImage = rootView.findViewById(R.id.textViewSetProfileImage);
         textViewSetProfileImage.setOnClickListener(this);
 
@@ -175,6 +175,7 @@ public class CreateProfileFragment extends Fragment implements View.OnClickListe
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
                         imageProfileRef = mUri;
+                        Login();
                         pd.dismiss();
                     } else {
                         Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
