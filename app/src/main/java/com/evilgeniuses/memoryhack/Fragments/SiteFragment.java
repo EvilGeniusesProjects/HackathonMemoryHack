@@ -24,14 +24,15 @@ import androidx.fragment.app.Fragment;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_site, container, false);
+        //View rootView = inflater.inflate(R.layout.fragment_site, container, false);
+        View rootView = inflater.inflate(R.layout.check_check, container, false);
 
-        webView = rootView.findViewById(R.id.webView);
-
-        webView.setWebViewClient(new WebViewClient());
-        webView.getSettings().setJavaScriptEnabled(true);
-
-        webView.loadUrl("https://foto.pamyat-naroda.ru/");
+//        webView = rootView.findViewById(R.id.webView);
+//
+//        webView.setWebViewClient(new WebViewClient());
+//        webView.getSettings().setJavaScriptEnabled(true);
+//
+//        webView.loadUrl("https://foto.pamyat-naroda.ru/");
 
 
 

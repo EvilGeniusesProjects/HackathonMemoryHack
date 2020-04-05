@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:mask="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AuntificationActivity" >
+    android:background="@color/colorGrey"
+    tools:context=".Activity.AuntificationActivity">
 
 
     <LinearLayout
@@ -19,7 +20,9 @@
         <Spinner
             android:id="@+id/spinnerCountries"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,7 +42,7 @@
                 android:enabled="false"
                 android:inputType="textPersonName"
                 android:text="+7"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -49,6 +52,8 @@
                 android:layout_height="wrap_content"
                 android:hint="----------"
                 android:inputType="phone"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhiteGray"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:typeface="monospace"
@@ -61,8 +66,10 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Пожалуйста, укажите код страны и свой номер телефона."
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/colorWhiteGray" />
 
     </LinearLayout>
 

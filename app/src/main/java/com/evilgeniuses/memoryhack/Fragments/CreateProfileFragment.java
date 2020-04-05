@@ -47,11 +47,13 @@ import static android.app.Activity.RESULT_OK;
 public class CreateProfileFragment extends Fragment implements View.OnClickListener {
 
     private SwitchFragment switchFragment;
+    static String PhoneNumber;
 
     EditText editTextLogin;
     EditText editTextName;
     EditText editTextLastname;
     EditText editTextEmail;
+    EditText editTextFrendNumber;
     Button buttonSignin;
     ImageView imageViewProfileImage;
     TextView textViewSetProfileImage;
@@ -78,6 +80,7 @@ public class CreateProfileFragment extends Fragment implements View.OnClickListe
         editTextName = rootView.findViewById(R.id.editTextName);
         editTextLastname = rootView.findViewById(R.id.editTextLastname);
         editTextEmail = rootView.findViewById(R.id.editTextEmail);
+        editTextFrendNumber = rootView.findViewById(R.id.editTextFrendNumber);
         imageViewProfileImage = rootView.findViewById(R.id.imageViewProfileImage);
         textViewSetProfileImage = rootView.findViewById(R.id.textViewSetProfileImage);
         textViewSetProfileImage.setOnClickListener(this);
@@ -104,6 +107,8 @@ public class CreateProfileFragment extends Fragment implements View.OnClickListe
         user.userEmail = String.valueOf(editTextEmail.getText());
         user.userName = String.valueOf(editTextName.getText());
         user.userLastname = String.valueOf(editTextLastname.getText());
+        user.userNumber = PhoneNumber;
+        user.userFrendNumber = String.valueOf(editTextFrendNumber.getText());
         //user.userPassword = String.valueOf(editTextPassword.getText());
         user.userStatus = "offline";
         myRef.child("Users/" + authenticationID).setValue(user);
@@ -212,15 +217,6 @@ public class CreateProfileFragment extends Fragment implements View.OnClickListe
         }
     }
 
-
-
-
-
-
-
-
-
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -229,7 +225,8 @@ public class CreateProfileFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    public static PhoneNumberFragment newInstance() {
-        return new PhoneNumberFragment();
+    public static CreateProfileFragment newInstance(String number) {
+        PhoneNumber = number;
+        return new CreateProfileFragment();
     }
 }
