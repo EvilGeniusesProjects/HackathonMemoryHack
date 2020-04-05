@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
@@ -42,7 +41,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -60,7 +58,6 @@ public class AddDataFragment extends Fragment {
     private CompositeDisposable compositeDisposable;
 
     private ImageView imageView;
-    private ProgressBar progressBar;
     private Button btnUploadPhoto;
     private Button btnUpgradePhoto;
     private ImageView shareInInstagramBtn;
@@ -70,7 +67,6 @@ public class AddDataFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_data, container, false);
         imageView = view.findViewById(R.id.imageView);
-        progressBar = view.findViewById(R.id.progressBar);
         btnUploadPhoto = view.findViewById(R.id.btnUploadPhoto);
         btnUpgradePhoto = view.findViewById(R.id.btnUpgradePhoto);
         shareInInstagramBtn = view.findViewById(R.id.shareButtom);
@@ -108,7 +104,10 @@ public class AddDataFragment extends Fragment {
 
         btnUpgradePhoto.setOnClickListener(v -> {
 
-            progressBar.setVisibility(View.VISIBLE);
+            final ProgressDialog pd = new ProgressDialog(getContext());
+
+            pd.setMessage("Обработка");
+            pd.show();
 
             Single<byte[]> singleResult = Single.create(emitter -> {
                 //Lazy init
@@ -150,7 +149,7 @@ public class AddDataFragment extends Fragment {
                             .subscribe(result -> {
                                 Bitmap bitmap = BitmapFactory.decodeByteArray(result, 0, result.length);
                                 imageView.setImageBitmap(bitmap);
-                                progressBar.setVisibility(View.GONE);
+                                pd.dismiss();
                                 btnUpgradePhoto.setEnabled(false);
                             }));
         });
