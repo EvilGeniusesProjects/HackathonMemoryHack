@@ -4,7 +4,7 @@
     <string name="data_str">Data</string>
     <string name="list_str">List</string>
     <string name="gifts_str">Gifts</string>
-
+    <string name="stories">История</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

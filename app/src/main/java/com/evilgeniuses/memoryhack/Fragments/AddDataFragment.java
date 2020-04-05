@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.evilgeniuses.memoryhack.Model.ColorizeRequestModel;
@@ -38,7 +40,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -59,6 +63,7 @@ public class AddDataFragment extends Fragment {
     private ProgressBar progressBar;
     private Button btnUploadPhoto;
     private Button btnUpgradePhoto;
+    private ImageView shareInInstagramBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,8 +73,7 @@ public class AddDataFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
         btnUploadPhoto = view.findViewById(R.id.btnUploadPhoto);
         btnUpgradePhoto = view.findViewById(R.id.btnUpgradePhoto);
-
-
+        shareInInstagramBtn = view.findViewById(R.id.shareButtom);
         return view;
     }
 
@@ -150,6 +154,8 @@ public class AddDataFragment extends Fragment {
                                 btnUpgradePhoto.setEnabled(false);
                             }));
         });
+
+        shareInInstagramBtn.setOnClickListener(v -> shareFileToInstagram());
     }
 
     @Override
@@ -177,7 +183,7 @@ public class AddDataFragment extends Fragment {
         }
     }
 
-    public void checkFace(Bitmap photo) {
+    private void checkFace(Bitmap photo) {
 
         final ProgressDialog pd = new ProgressDialog(getContext());
 
@@ -198,10 +204,13 @@ public class AddDataFragment extends Fragment {
                     if (faces.size() == 1) {
                         imageView.setImageBitmap(photo);
                         btnUpgradePhoto.setEnabled(true);
+                        shareInInstagramBtn.setVisibility(View.VISIBLE);
                     } else if (faces.size() > 1) {
                         Toast.makeText(getContext(), "Не допускается загрузка групповых фотографий", Toast.LENGTH_SHORT).show();
+                        shareInInstagramBtn.setVisibility(View.GONE);
                     } else {
                         Toast.makeText(getContext(), "На фотографии не распознаны лица, попробуйте загрузить другие фотографии", Toast.LENGTH_SHORT).show();
+                        shareInInstagramBtn.setVisibility(View.GONE);
                     }
 
                 }).addOnFailureListener(
@@ -209,5 +218,48 @@ public class AddDataFragment extends Fragment {
                     Toast.makeText(getContext(), "На фотографии не распознаны лица, попробуйте загрузить другие фотографии", Toast.LENGTH_SHORT).show();
                     pd.dismiss();
                 });
+    }
+
+    private void shareFileToInstagram() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("image/*");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Uri uriForFile = FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", createImageFile());
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uriForFile);
+        shareIntent.setPackage("com.instagram.android");
+        startActivity(shareIntent);
+    }
+
+    private File createImageFile() {
+        Drawable drawable = imageView.getDrawable();
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        byte[] bitmapData = bos.toByteArray();
+
+        try {
+            File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/memory");
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+            File temp = new File(dir, System.currentTimeMillis() + ".jpg");
+            boolean isNewFileCreated = temp.createNewFile();
+            if (isNewFileCreated) {
+                FileOutputStream fos = new FileOutputStream(temp);
+                fos.write(bitmapData);
+                fos.flush();
+                fos.close();
+
+                return temp;
+            }
+        } catch (FileNotFoundException e) {
+            Log.e(LOG_TAG, "FileNotFoundException expected: ", e);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "IOException expected: ", e);
+        }
+        return null;
     }
 }

@@ -25,6 +25,16 @@
 
         <meta-data android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="face" />
+
+        <provider
+            android:name=".services.MyFilesProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
