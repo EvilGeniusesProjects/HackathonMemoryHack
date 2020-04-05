@@ -101,6 +101,7 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
             public void afterTextChanged(Editable s) {
             }
         });
+
         editTextNumberCode2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
