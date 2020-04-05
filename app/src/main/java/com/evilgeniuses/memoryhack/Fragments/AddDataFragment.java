@@ -10,24 +10,35 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.evilgeniuses.memoryhack.Model.ColorizeRequestModel;
+import com.evilgeniuses.memoryhack.Model.WarHero;
 import com.evilgeniuses.memoryhack.R;
 import com.evilgeniuses.memoryhack.services.ColorizeService;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -41,6 +52,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -62,16 +74,311 @@ public class AddDataFragment extends Fragment {
     private Button btnUpgradePhoto;
     private ImageView shareInInstagramBtn;
     private ImageView shareInVkBtn;
+    private LinearLayout linearLayout;
+
+    private EditText editTextHeroName;
+    private EditText editTextHeroLastname;
+    private EditText editTextHeroMiddlename;
+    private EditText editTextHeroDateOfBirth;
+    private EditText editTextHeroPlaceOfBirth;
+    private EditText editTextHeroPlaceOfCallRegion;
+    private EditText editTextHeroYearOfCall;
+    private EditText editTextHeroPlaceOfCall;
+    private EditText editTextHeroMilitaryRank;
+    private EditText editTextHeroYearDateOfDeath;
+    private EditText editTextHeroHeroStory;
+    private EditText editTextHeroLinkToThirdPartyResources;
+    private EditText editTextHeroMailForAccessToYourPersonalAccount;
+    private ImageView imageViewMail;
+    private Button buttonAddMail;
+    private Button buttonSned;
+    private TextView textViewPercent;
+
+
+    String authenticationID;
+    DatabaseReference myRef;
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
+    private static final int IMAGE_REQUEST = 1;
+    String percent = "0%";
+    int intPercent;
+
+    Boolean photoImage = false;
+    Boolean mailImage = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_data, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_hero, container, false);
         imageView = view.findViewById(R.id.imageView);
         btnUploadPhoto = view.findViewById(R.id.btnUploadPhoto);
         btnUpgradePhoto = view.findViewById(R.id.btnUpgradePhoto);
         shareInInstagramBtn = view.findViewById(R.id.shareInstagramButtom);
         shareInVkBtn = view.findViewById(R.id.shareVkButtom);
+        linearLayout = view.findViewById(R.id.linearLayout);
+
+        textViewPercent = view.findViewById(R.id.textViewPercent);
+
+        editTextHeroName = view.findViewById(R.id.editTextHeroName);
+        editTextHeroLastname = view.findViewById(R.id.editTextHeroLastname);
+        editTextHeroMiddlename = view.findViewById(R.id.editTextHeroMiddlename);
+
+        editTextHeroDateOfBirth = view.findViewById(R.id.editTextHeroDateOfBirth);
+        editTextHeroPlaceOfBirth = view.findViewById(R.id.editTextHeroPlaceOfBirth);
+
+        editTextHeroPlaceOfCallRegion = view.findViewById(R.id.editTextHeroPlaceOfCallRegion);
+        editTextHeroYearOfCall = view.findViewById(R.id.editTextHeroYearOfCall);
+        editTextHeroPlaceOfCall = view.findViewById(R.id.editTextHeroPlaceOfCall);
+        editTextHeroMilitaryRank = view.findViewById(R.id.editTextHeroMilitaryRank);
+
+        editTextHeroYearDateOfDeath = view.findViewById(R.id.editTextHeroYearDateOfDeath);
+        editTextHeroHeroStory = view.findViewById(R.id.editTextHeroHeroStory);
+        editTextHeroLinkToThirdPartyResources = view.findViewById(R.id.editTextHeroLinkToThirdPartyResources);
+        editTextHeroMailForAccessToYourPersonalAccount = view.findViewById(R.id.editTextHeroMailForAccessToYourPersonalAccount);
+
+
+        editTextHeroMiddlename.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroDateOfBirth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroPlaceOfBirth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroPlaceOfCallRegion.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroYearOfCall.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroPlaceOfCall.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroMilitaryRank.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroYearDateOfDeath.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroHeroStory.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroLinkToThirdPartyResources.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+        editTextHeroMailForAccessToYourPersonalAccount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkFilds();
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        imageViewMail = view.findViewById(R.id.imageViewMail);
+
+
+        buttonAddMail = view.findViewById(R.id.buttonAddMail);
+        buttonSned = view.findViewById(R.id.buttonSned);
+
+
+
+        authenticationID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+
         return view;
     }
 
@@ -103,6 +410,14 @@ public class AddDataFragment extends Fragment {
                     .onSameThread()
                     .check();
         });
+
+
+        buttonSned.setOnClickListener(v -> writeNewWarHero());
+        buttonAddMail.setOnClickListener(v -> SelectImage());
+
+
+
+
 
         btnUpgradePhoto.setOnClickListener(v -> {
 
@@ -152,7 +467,7 @@ public class AddDataFragment extends Fragment {
                                 Bitmap bitmap = BitmapFactory.decodeByteArray(result, 0, result.length);
                                 imageView.setImageBitmap(bitmap);
                                 pd.dismiss();
-                                btnUpgradePhoto.setEnabled(false);
+                                btnUpgradePhoto.setVisibility(View.GONE);
                             }));
         });
 
@@ -205,17 +520,25 @@ public class AddDataFragment extends Fragment {
                     pd.dismiss();
                     if (faces.size() == 1) {
                         imageView.setImageBitmap(photo);
-                        btnUpgradePhoto.setEnabled(true);
+                        btnUpgradePhoto.setVisibility(View.VISIBLE);
                         shareInInstagramBtn.setVisibility(View.VISIBLE);
                         shareInVkBtn.setVisibility(View.VISIBLE);
+                        linearLayout.setVisibility(View.VISIBLE);
+                        photoImage = true;
+                        checkFilds();
                     } else if (faces.size() > 1) {
                         Toast.makeText(getContext(), "Не допускается загрузка групповых фотографий", Toast.LENGTH_SHORT).show();
                         shareInInstagramBtn.setVisibility(View.GONE);
                         shareInVkBtn.setVisibility(View.GONE);
+                        linearLayout.setVisibility(View.GONE);
+                        photoImage = false;
                     } else {
                         Toast.makeText(getContext(), "На фотографии не распознаны лица, попробуйте загрузить другие фотографии", Toast.LENGTH_SHORT).show();
                         shareInInstagramBtn.setVisibility(View.GONE);
+
+                        linearLayout.setVisibility(View.GONE);
                         shareInVkBtn.setVisibility(View.GONE);
+                        photoImage = false;
                     }
 
                 }).addOnFailureListener(
@@ -275,4 +598,130 @@ public class AddDataFragment extends Fragment {
         }
         return null;
     }
+
+
+    /////////////////////////////////// Просто код
+
+
+    private void writeNewWarHero() {
+        WarHero warHero = new WarHero();
+        warHero.heroName = String.valueOf(editTextHeroName.getText());
+        warHero.heroLastname = String.valueOf(editTextHeroLastname.getText());
+        warHero.heroMiddlename = String.valueOf(editTextHeroMiddlename.getText());
+        warHero.heroDateOfBirth = String.valueOf(editTextHeroDateOfBirth.getText());
+        warHero.heroPlaceOfBirth = String.valueOf(editTextHeroPlaceOfBirth.getText());
+        warHero.heroPlaceOfCallRegion = String.valueOf(editTextHeroPlaceOfCallRegion.getText());
+        warHero.heroYearOfCall = String.valueOf(editTextHeroYearOfCall.getText());
+        warHero.heroPlaceOfCall = String.valueOf(editTextHeroPlaceOfCall.getText());
+        warHero.heroMilitaryRank = String.valueOf(editTextHeroMilitaryRank.getText());
+        warHero.heroYearDateOfDeath = String.valueOf(editTextHeroYearDateOfDeath.getText());
+        warHero.heroHeroStory = String.valueOf(editTextHeroHeroStory.getText());
+        warHero.heroLinkToThirdPartyResources = String.valueOf(editTextHeroLinkToThirdPartyResources.getText());
+        warHero.heroMailForAccessToYourPersonalAccount = String.valueOf(editTextHeroMailForAccessToYourPersonalAccount.getText());
+
+        myRef.child("Users/" + authenticationID).child("Heros").child(  String.valueOf(editTextHeroName.getText())).setValue(warHero);
+
+
+
+        myRef = FirebaseDatabase.getInstance().getReference("Users").child(authenticationID);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("userPercent", "" + percent);
+        myRef.updateChildren(map);
+    }
+
+    private void SelectImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, IMAGE_REQUEST);
+        mailImage = true;
+        checkFilds();
+    }
+
+
+    private void setPercentText(int per){
+        intPercent = intPercent + per;
+        percent = intPercent + "%";
+        textViewPercent.setText(percent);
+    }
+
+    private void checkFilds(){
+        intPercent = 0;
+
+        if(editTextHeroMiddlename.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(editTextHeroDateOfBirth.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(editTextHeroPlaceOfBirth.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(editTextHeroPlaceOfCallRegion.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(editTextHeroYearOfCall.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(editTextHeroPlaceOfCall.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(editTextHeroMilitaryRank.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(editTextHeroYearDateOfDeath.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(editTextHeroHeroStory.getText().length() != 0){
+            setPercentText(10);
+        }
+
+        if(editTextHeroLinkToThirdPartyResources.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(editTextHeroMailForAccessToYourPersonalAccount.getText().length() != 0){
+            setPercentText(6);
+        }
+
+        if(photoImage){
+            setPercentText(15);
+        }
+
+        if(mailImage){
+            setPercentText(15);
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

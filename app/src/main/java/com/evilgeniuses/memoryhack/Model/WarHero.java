@@ -5,6 +5,7 @@ public class WarHero {
     public String heroName;
     public String heroLastname;
     public String heroMiddlename;
+    public String heroDateOfBirth;
     public String heroPlaceOfBirth;
     public String heroPlaceOfCallRegion;
     public String heroYearOfCall;
@@ -19,10 +20,11 @@ public class WarHero {
 
     }
 
-    public WarHero(String heroName, String heroLastname, String heroMiddlename, String heroPlaceOfBirth, String heroPlaceOfCallRegion, String heroYearOfCall, String heroPlaceOfCall, String heroMilitaryRank, String heroYearDateOfDeath, String heroHeroStory, String heroLinkToThirdPartyResources, String heroMailForAccessToYourPersonalAccount) {
+    public WarHero(String heroName, String heroLastname, String heroMiddlename, String heroDateOfBirth, String heroPlaceOfBirth, String heroPlaceOfCallRegion, String heroYearOfCall, String heroPlaceOfCall, String heroMilitaryRank, String heroYearDateOfDeath, String heroHeroStory, String heroLinkToThirdPartyResources, String heroMailForAccessToYourPersonalAccount) {
         this.heroName = heroName;
         this.heroLastname = heroLastname;
         this.heroMiddlename = heroMiddlename;
+        this.heroDateOfBirth = heroDateOfBirth;
         this.heroPlaceOfBirth = heroPlaceOfBirth;
         this.heroPlaceOfCallRegion = heroPlaceOfCallRegion;
         this.heroYearOfCall = heroYearOfCall;
@@ -57,6 +59,14 @@ public class WarHero {
 
     public void setHeroMiddlename(String heroMiddlename) {
         this.heroMiddlename = heroMiddlename;
+    }
+
+    public String getHeroDateOfBirth() {
+        return heroDateOfBirth;
+    }
+
+    public void setHeroDateOfBirth(String heroDateOfBirth) {
+        this.heroDateOfBirth = heroDateOfBirth;
     }
 
     public String getHeroPlaceOfBirth() {

@@ -18,24 +18,121 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Добавить"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Героя войны"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnUploadPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/system_style_button"
+                android:text="Загрузить фото"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnUpgradePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/system_style_button"
+                android:text="Улучшить фото"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/shareVkButtom"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_vk"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/btnUpgradePhoto"
+                    app:layout_constraintRight_toLeftOf="@+id/shareInstagramButtom"
+                    app:srcCompat="@drawable/ic_vk" />
+
+                <ImageView
+                    android:id="@+id/shareInstagramButtom"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ic_instagram" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_twitter" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_facebook" />
+
+            </LinearLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Имя"
                     android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -46,18 +143,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroLastname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Фамилия"
                     android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -68,18 +165,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroMiddlename"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Отчество"
                     android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -90,18 +187,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroDateOfBirth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Год / дата рождения"
-                    android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:inputType="date|text"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -112,18 +209,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroPlaceOfBirth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Место рождения / Область"
                     android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -134,18 +231,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroPlaceOfCallRegion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Место призыва / область"
                     android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -156,18 +253,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroYearOfCall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Год / Дата призыва"
-                    android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:inputType="date|text"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -178,18 +275,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroPlaceOfCall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Место службы"
                     android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -200,18 +297,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroMilitaryRank"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Воинское звание"
                     android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -222,18 +319,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroYearDateOfDeath"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Год / Дата смерти"
                     android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -244,18 +341,20 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroHeroStory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
+                    android:gravity="top"
                     android:hint="История героя"
-                    android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:inputType="textMultiLine|text"
+                    android:lines="5"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -266,18 +365,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroLinkToThirdPartyResources"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Ссылка со сторонних проектов"
                     android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
@@ -288,132 +387,82 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorGreen">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeroMailForAccessToYourPersonalAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/system_style_edit_profile"
                     android:hint="Email для  доступа в личный кабинет"
-                    android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="12dp"
                     android:textColor="@color/colorWhiteGray"
                     android:textColorHint="@color/colorGreen" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:id="@+id/textView9"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:textColorHint="@color/colorGreen">
+                android:layout_weight="1"
+                android:text="Загрузить фронтовые письма героя"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/system_style_edit_profile"
-                    android:hint="hint"
-                    android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColor="@color/colorWhiteGray"
-                    android:textColorHint="@color/colorGreen" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <ImageView
+                android:id="@+id/imageViewMail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:textColorHint="@color/colorGreen">
+                android:layout_height="wrap_content" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/system_style_edit_profile"
-                    android:hint="hint"
-                    android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColor="@color/colorWhiteGray"
-                    android:textColorHint="@color/colorGreen" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <Button
+                android:id="@+id/buttonAddMail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:textColorHint="@color/colorGreen">
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/system_style_button"
+                android:text="Обзор"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/system_style_edit_profile"
-                    android:hint="hint"
-                    android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColor="@color/colorWhiteGray"
-                    android:textColorHint="@color/colorGreen" />
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <Button
+                android:id="@+id/buttonSned"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:textColorHint="@color/colorGreen">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/system_style_edit_profile"
-                    android:hint="hint"
-                    android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColor="@color/colorWhiteGray"
-                    android:textColorHint="@color/colorGreen" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:textColorHint="@color/colorGreen">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/system_style_edit_profile"
-                    android:hint="hint"
-                    android:inputType="text"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColor="@color/colorWhiteGray"
-                    android:textColorHint="@color/colorGreen" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/system_style_button_send"
+                android:text="Отправить"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/textViewPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="0%"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
