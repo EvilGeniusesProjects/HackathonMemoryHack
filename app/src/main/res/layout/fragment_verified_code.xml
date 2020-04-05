@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:mask="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorGrey">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -32,7 +32,7 @@
             android:layout_marginBottom="16dp"
             android:text="Введите код"
             android:textAlignment="center"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:text="Мы отправили SMS с кодом проверки на Ваш телефон"
             android:textAlignment="center"
+            android:textColor="@color/colorWhiteGray"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -62,6 +63,10 @@
             android:gravity="center"
             android:hint="-"
             android:inputType="phone"
+            android:textColor="@color/colorWhite"
+            android:textColorHighlight="@color/colorOrange"
+            android:textColorHint="@color/colorWhiteGray"
+            android:textColorLink="@color/colorOrange"
             android:textSize="30sp"
             android:textStyle="bold"
             android:typeface="monospace"
@@ -76,12 +81,16 @@
             android:gravity="center"
             android:hint="-"
             android:inputType="phone"
+            android:textColor="@color/colorWhite"
+            android:textColorHighlight="@color/colorOrange"
+            android:textColorHint="@color/colorWhiteGray"
+            android:textColorLink="@color/colorOrange"
             android:textSize="30sp"
+
             android:textStyle="bold"
             android:typeface="monospace"
             mask:allowed_chars="1234567890"
             mask:keep_hint="true"
-
             mask:mask="#" />
 
         <br.com.sapereaude.maskedEditText.MaskedEditText
@@ -91,6 +100,10 @@
             android:gravity="center"
             android:hint="-"
             android:inputType="phone"
+            android:textColor="@color/colorWhite"
+            android:textColorHighlight="@color/colorOrange"
+            android:textColorHint="@color/colorWhiteGray"
+            android:textColorLink="@color/colorOrange"
             android:textSize="30sp"
             android:textStyle="bold"
             android:typeface="monospace"
@@ -105,6 +118,10 @@
             android:gravity="center"
             android:hint="-"
             android:inputType="phone"
+            android:textColor="@color/colorWhite"
+            android:textColorHighlight="@color/colorOrange"
+            android:textColorHint="@color/colorWhiteGray"
+            android:textColorLink="@color/colorOrange"
             android:textSize="30sp"
             android:textStyle="bold"
             android:typeface="monospace"
@@ -119,6 +136,10 @@
             android:gravity="center"
             android:hint="-"
             android:inputType="phone"
+            android:textColor="@color/colorWhite"
+            android:textColorHighlight="@color/colorOrange"
+            android:textColorHint="@color/colorWhiteGray"
+            android:textColorLink="@color/colorOrange"
             android:textSize="30sp"
             android:textStyle="bold"
             android:typeface="monospace"
@@ -133,6 +154,10 @@
             android:gravity="center"
             android:hint="-"
             android:inputType="phone"
+            android:textColor="@color/colorWhite"
+            android:textColorHighlight="@color/colorOrange"
+            android:textColorHint="@color/colorWhiteGray"
+            android:textColorLink="@color/colorOrange"
             android:textSize="30sp"
             android:textStyle="bold"
             android:typeface="monospace"
@@ -146,7 +171,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:background="@drawable/system_style_button"
         android:text="Ok"
+        android:textColor="@color/design_default_color_background"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

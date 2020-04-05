@@ -10,11 +10,13 @@ public class User {
     public String userEmail;
     public String userPassword;
     public String userStatus;
+    public String userNumber;
+    public String userFrendNumber;
 
     public User() {
     }
 
-    public User(String userID, String userUsername, String userUsernameSearch, String userProfileImageURL, String userName, String userLastname, String userEmail, String userPassword, String userStatus) {
+    public User(String userID, String userUsername, String userUsernameSearch, String userProfileImageURL, String userName, String userLastname, String userEmail, String userPassword, String userStatus, String userNumber, String userFrendNumber) {
         this.userID = userID;
         this.userUsername = userUsername;
         this.userUsernameSearch = userUsernameSearch;
@@ -24,6 +26,8 @@ public class User {
         this.userID = userEmail;
         this.userID = userPassword;
         this.userStatus = userStatus;
+        this.userNumber = userNumber;
+        this.userFrendNumber = userFrendNumber;
     }
 
     public String getUserID() {
@@ -97,4 +101,21 @@ public class User {
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
     }
+
+    public String getUserFrendNumber() {
+        return userFrendNumber;
+    }
+
+    public void setUserFrendNumber(String userFrendNumber) {
+        this.userFrendNumber = userFrendNumber;
+    }
+
+    public String getUserNumber() {
+        return userNumber;
+    }
+
+    public void setUserNumber(String userNumber) {
+        this.userNumber = userNumber;
+    }
+
 }

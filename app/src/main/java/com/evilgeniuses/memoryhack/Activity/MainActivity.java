@@ -6,15 +6,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.evilgeniuses.memoryhack.Fragments.AddDataFragment;
 import com.evilgeniuses.memoryhack.Fragments.EmptyFragment;
+import com.evilgeniuses.memoryhack.Fragments.GiftsFragment;
 import com.evilgeniuses.memoryhack.Fragments.ProfileFragment;
 import com.evilgeniuses.memoryhack.Fragments.SiteFragment;
+import com.evilgeniuses.memoryhack.Fragments.UsersListFragment;
 import com.evilgeniuses.memoryhack.Interface.SwitchFragment;
 import com.evilgeniuses.memoryhack.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements SwitchFragment {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         //Главный фрагмент
         setFragment(SiteFragment.newInstance(), "1");
     }
@@ -40,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements SwitchFragment {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                EmptyFragment emptyFragment = new EmptyFragment();
                 switch (item.getItemId()) {
                     case R.id.siteItem:
                         setFragment(SiteFragment.newInstance(), "1");
@@ -50,10 +55,10 @@ public class MainActivity extends AppCompatActivity implements SwitchFragment {
                         setFragment(addDataFragment, "Add data Fragment");
                         break;
                     case R.id.listItem:
-                        setFragment(emptyFragment, "1");
+                        setFragment(UsersListFragment.newInstance(), "1");
                         break;
                     case R.id.giftsItem:
-                        setFragment(emptyFragment, "1");
+                        setFragment(GiftsFragment.newInstance(), "1");
                         break;
                     case R.id.profileItem:
                         setFragment(ProfileFragment.newInstance(), "1");

@@ -1,9 +1,15 @@
 package com.evilgeniuses.memoryhack.Fragments;
 
 import androidx.annotation.Nullable;
+
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.evilgeniuses.memoryhack.Activity.MainActivity;
 import com.evilgeniuses.memoryhack.Interface.SwitchFragment;
+import com.evilgeniuses.memoryhack.Model.User;
 import com.evilgeniuses.memoryhack.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -13,6 +19,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -250,11 +261,41 @@ public class VerifiedCodeFragment extends Fragment implements View.OnClickListen
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()) {
-                            switchFragment.setFragment(new CreateProfileFragment(), "Профиль");
+
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                            final ProgressDialog pd = new ProgressDialog(getContext());
+                            pd.setMessage("Uploading");
+                            pd.show();
+
+                            myRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    User value = dataSnapshot.getValue(User.class);
+                                    if(value!= null){
+                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        startActivity(intent);
+                                        getActivity().finish();
+                                        pd.dismiss();
+                                    }else{
+                                        switchFragment.setFragment(new CreateProfileFragment().newInstance(PhoneNumber), "Профиль");
+                                        pd.dismiss();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError error) {
+                                    //Log.w(TAG, "Не удалось прочитать значение", error.toException());
+                                }
+                            });
+
                         } else {
                             Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
+
                     }
                 });
     }

@@ -43,7 +43,14 @@ public class PhoneNumberFragment extends Fragment implements View.OnClickListene
         imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
 
         spinner = rootView.findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+        spinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_row, R.id.weekofday, CountryData.countryNames));
+
+
+
+
+
+
+        spinner.setSelection(getIndex(spinner, "Russian Federation"));
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -70,6 +77,20 @@ public class PhoneNumberFragment extends Fragment implements View.OnClickListene
                 break;
         }
     }
+
+    private int getIndex(Spinner spinner, String myString){
+
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).equals(myString)){
+                index = i;
+            }
+        }
+        return index;
+    }
+
+
 
     private void checkNumberField(){
 
