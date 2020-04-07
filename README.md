@@ -2,11 +2,10 @@
 ### Date: 04.04.2020 - 05.04.2020г.
 ### Task: Придумать сервис, мотивирующий людей загружать фотографии участников Великой Отечественной войны на сайт портала «Дорога памяти».
 
-
-  
-<img align="right" src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration1.jpg" alt="drawing" width="250"/>\
-<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration2.jpg" alt="drawing" width="250"/>\
-<img align="center" src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration3.jpg" alt="drawing" width="250"/><br>
+<p align="center">
+<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration1.jpg" alt="drawing" width="250"/>
+<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration2.jpg" alt="drawing" width="250"/>
+<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration3.jpg" alt="drawing" width="250"/><br>
 <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration4.jpg" alt="drawing" width="250"/><br>
   
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window1.jpg" alt="drawing" width="250"/>
@@ -22,8 +21,6 @@
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 black and white.jpg" alt="drawing" width="250"/>
 
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 colored.jpg" alt="drawing" width="250"/>
-
-
 
 
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 inst.jpg" alt="drawing" width="250"/>
