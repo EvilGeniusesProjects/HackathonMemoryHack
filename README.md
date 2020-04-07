@@ -2,7 +2,7 @@
 ### Date: 04.04.2020 - 05.04.2020г.
 ### Task: Придумать сервис, мотивирующий людей загружать фотографии участников Великой Отечественной войны на сайт портала «Дорога памяти».
 
-<p align="center">
+
   
 <img align="right" src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration1.jpg" alt="drawing" width="250"/><br>
 <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration2.jpg" alt="drawing" width="250"/><br>
