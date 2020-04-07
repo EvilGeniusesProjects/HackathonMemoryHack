@@ -4,8 +4,8 @@
 
 
   
-<img align="right" src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration1.jpg" alt="drawing" width="250"/><br>
-<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration2.jpg" alt="drawing" width="250"/><br>
+<img align="right" src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration1.jpg" alt="drawing" width="250"/>\
+<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration2.jpg" alt="drawing" width="250"/>\
 <img align="center" src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration3.jpg" alt="drawing" width="250"/><br>
 <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration4.jpg" alt="drawing" width="250"/><br>
   
