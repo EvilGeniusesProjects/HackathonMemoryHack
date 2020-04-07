@@ -3,10 +3,11 @@
 ### Task: Придумать сервис, мотивирующий людей загружать фотографии участников Великой Отечественной войны на сайт портала «Дорога памяти».
 
 <p align="center">
-<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration1.jpg" alt="drawing" width="250"/>
-<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration2.jpg" alt="drawing" width="250"/>
-<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration3.jpg" alt="drawing" width="250"/>
-<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration4.jpg" alt="drawing" width="250"/>
+  
+<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration1.jpg" alt="drawing" width="250"/><br>
+<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration2.jpg" alt="drawing" width="250"/><br>
+<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration3.jpg" alt="drawing" width="250"/><br>
+<img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/registration4.jpg" alt="drawing" width="250"/><br>
   
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window1.jpg" alt="drawing" width="250"/>
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2.jpg" alt="drawing" width="250"/>
@@ -21,7 +22,6 @@
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 black and white.jpg" alt="drawing" width="250"/>
 
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 colored.jpg" alt="drawing" width="250"/>
-
 
 
 
