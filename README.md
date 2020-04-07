@@ -17,4 +17,19 @@
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 pick img.jpg" alt="drawing" width="250"/>
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 ai.jpg" alt="drawing" width="250"/>
  <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 ai1.jpg" alt="drawing" width="250"/>
+ 
+ <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 black and white.jpg" alt="drawing" width="250"/>
+
+ <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 colored.jpg" alt="drawing" width="250"/>
+
+
+
+
+
+ <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 inst.jpg" alt="drawing" width="250"/>
+
+ <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window2 form.jpg" alt="drawing" width="250"/>
+
+ <img src="https://github.com/EvilGeniusesProjects/Resource/blob/master/HackathonMemoryHack/window5 info.jpg" alt="drawing" width="250"/>
+
 </p>
